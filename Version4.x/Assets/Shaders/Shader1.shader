@@ -11,7 +11,7 @@ Shader "ShaderTutorial/Shader1" {
 		
 		// CGPROGRAM...ENDCG之间是着色器处理
 		CGPROGRAM
-		// 编译指定：这是一个表面着色器，着色器处理函数surf，采用兰伯特光照模型
+		// 编译指定：这是一个表面着色器，着色器处理函数surf，采用兰伯特光照模型(这个编译器指令指明了这是一个表面着色器，surface着色器是Unity自己的一种Shader编写方式，将会被编译为定点/片段着色器)
 		#pragma surface surf Lambert
 		// 定义对应Properties中的2DTexture的变量，取样数据，在surf着色器处理函数中使用
 		sampler2D _MainTex;
@@ -23,7 +23,9 @@ Shader "ShaderTutorial/Shader1" {
 
 		// 着色器处理函数surf：IN--输入值，SurfaceOutput o--输出
 		void surf (Input IN, inout SurfaceOutput o) {
+			// tex2D(纹理数据，纹理的UV)
 			half4 c = tex2D (_MainTex, IN.uv_MainTex);
+			// 
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
 		}
