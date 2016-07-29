@@ -21,6 +21,7 @@ Shader "ShaderTutorial/Shader1" {
 			float2 uv_MainTex;
 		};
 
+		#pragma debug "----------------------------"
 		// 着色器处理函数surf：IN--输入值，SurfaceOutput o--输出
 		void surf (Input IN, inout SurfaceOutput o) {
 			// tex2D(纹理数据，纹理的UV)

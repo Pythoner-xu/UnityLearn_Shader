@@ -8,7 +8,7 @@
 		
 		CGPROGRAM
 		// 自定义光照模型
-		#pragma surface surf Lambert
+		#pragma surface surf CustomDiffuse
 
 		sampler2D _MainTex;
 		
@@ -16,12 +16,14 @@
 			float2 uv_MainTex;
 		};
 
+		// 表面着色器处理函数（输入纹理数据，输出处理后的像素数据）
 		void surf (Input IN, inout SurfaceOutput o) {
 			half4 c = tex2D (_MainTex, IN.uv_MainTex);
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
 		}
 
+		// 自定义Lambert光照模型（经过表面着色器处理后的输出结果作为输入，进行光照模型的处理）
 		inline float4 LightingCustomDiffuse (SurfaceOutput s, fixed3 lightDir, fixed atten)
 		{
 			float difLight = max(0, dot(s.Normal, lightDir));
