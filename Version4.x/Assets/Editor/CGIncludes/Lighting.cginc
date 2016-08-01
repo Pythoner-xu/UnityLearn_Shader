@@ -70,6 +70,7 @@ inline half3 DirLightmapDiffuse(in half3x3 dirBasis, fixed4 color, fixed4 scale,
 fixed4 _LightColor0;
 fixed4 _SpecColor;
 
+// 兰伯特光照模型：表面着色器处理后，再进行光照模型的处理
 inline fixed4 LightingLambert (SurfaceOutput s, fixed3 lightDir, fixed atten)
 {
 	fixed diff = max (0, dot (s.Normal, lightDir));

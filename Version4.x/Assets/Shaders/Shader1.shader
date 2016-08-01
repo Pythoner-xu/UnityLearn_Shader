@@ -1,4 +1,11 @@
-﻿// Shader不区分大小写
+﻿// 注意：Shader不区分大小写
+/* 
+	Unity默认创建的Shader结构
+	1、表面着色器
+	2、渲染类型：不透明物体
+	3、支持一张纹理贴图
+	4、采用Unity内置兰伯特光照模型Lighting.cginc	
+*/
 Shader "ShaderTutorial/Shader1" {
 	// Properties属性可选：用于Inspector可视化编辑
 	Properties {

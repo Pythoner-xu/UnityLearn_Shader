@@ -1,4 +1,9 @@
-﻿Shader "ShaderTutorial/Shader3" {
+﻿/*
+	1、表面着色器
+	2、自定义光照模型：兰伯特光照模型自定义
+	3、支持一张纹理
+*/
+Shader "ShaderTutorial/Shader3" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 	}
@@ -23,7 +28,7 @@
 			o.Alpha = c.a;
 		}
 
-		// 自定义Lambert光照模型（经过表面着色器处理后的输出结果作为输入，进行光照模型的处理）
+		// 1、自定义Lambert光照模型（经过表面着色器处理后的输出结果作为输入，进行光照模型的处理）
 		inline float4 LightingCustomDiffuse (SurfaceOutput s, fixed3 lightDir, fixed atten)
 		{
 			float difLight = max(0, dot(s.Normal, lightDir));
@@ -34,6 +39,19 @@
 
 			return col;
 		}
+
+		// 2、半兰伯特光照模型
+		inline float4 LightingCustomDiffuse2 (SurfaceOutput s, fixed3 lightDir, fixed atten)
+		{
+			float difLight = max(0, dot(s.Normal, lightDir));
+			float hLambert = difLight * 0.5 + 0.5;
+			float4 col;
+			col.rgb = s.Albedo * _LightColor0.rgb * (difLight * atten * 2);
+			col.a = s.Alpha;
+
+			return col;
+		}
+
 		ENDCG
 	} 
 	FallBack "Diffuse"

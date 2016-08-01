@@ -1,4 +1,10 @@
-﻿Shader "ShaderTutorial/Shader2" {
+﻿/*
+	1、表面着色器
+	2、采用Unity内置兰伯特光照模型
+	3、支持自发光，环境光调节的Shader
+	4、渲染类型：不透明物体
+*/
+Shader "ShaderTutorial/Shader2" {
 	Properties {
 		// 自发光
 		_EmissiveColor ("Emissive Color", Color) = (1, 1, 1, 1)
