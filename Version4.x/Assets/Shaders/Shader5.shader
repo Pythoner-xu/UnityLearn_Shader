@@ -1,4 +1,4 @@
-﻿Shader "Custom/Shader5" {
+﻿Shader "ShaderTutorial/Shader5" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_RampTex ("Ramp Tex", 2D) = "" {}
@@ -29,7 +29,7 @@
 		{
 			float difLight = max(0, dot(s.Normal, lightDir));
 			float hLambert = difLight * 0.5 + 0.5;
-			float3 ramp = tex2D(_RampTex, float2(hLambert, 0)).rgb;
+			float3 ramp = tex2D(_RampTex, float2(0, hLambert)).rgb;
 
 			float4 col;
 			col.rgb = s.Albedo * _LightColor0.rgb * ramp;
